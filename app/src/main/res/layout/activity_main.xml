@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".MainActivity">
+
+        <ImageView
+            android:id="@+id/hero_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:srcCompat="@drawable/icon_camera" />
+
+        <EditText
+            android:id="@+id/hero_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/hero_image"
+            android:layout_alignTop="@id/hero_image"
+            android:layout_marginStart="16dp"
+            android:hint="Superhero name" />
+
+        <EditText
+            android:id="@+id/hero_alter_ego"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/hero_image"
+            android:layout_alignBottom="@id/hero_image"
+            android:layout_marginStart="16dp"
+            android:hint="Alter ego" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/hero_image"
+            android:layout_marginTop="16dp"
+            android:background="@color/black"/>
+
+        <TextView
+            android:id="@+id/tv_bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:text="Bio"/>
+
+        <EditText
+            android:id="@+id/hero_bio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/tv_bio"
+            android:hint="Short_bio" />
+
+        <TextView
+            android:id="@+id/tv_power"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/hero_bio"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:text="Power"/>
+
+        <RatingBar
+            android:id="@+id/hero_rating_bar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_power"
+            android:layout_marginTop="16dp"
+            android:layout_centerHorizontal="true"
+            android:progressTint="@color/yellow"/>
+
+        <Button
+            android:id="@+id/save_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="Save" />
+    </RelativeLayout>
+</layout>
