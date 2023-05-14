@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -26,6 +27,9 @@ class MainActivity : AppCompatActivity() {
         success ->
         if(success && picturePath.isNotEmpty()){
             heroBitmap = BitmapFactory.decodeFile(picturePath)
+            if (heroBitmap != null) {
+                heroImage.setImageBitmap(heroBitmap)
+            }
         }
     }
 
@@ -52,24 +56,22 @@ class MainActivity : AppCompatActivity() {
 
     private fun openCamera(){
         val file = createImageFile()
-        FileProvider.getUriForFile(this, "$packageName.provider", file)
+        val uri = FileProvider.getUriForFile(this, "$packageName.provider", file)
+        getContent.launch(uri)
     }
 
     private fun createImageFile(): File {
         val fileName = "superhero_image"
         val fileDirectory = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        Log.i("TAG", fileDirectory.toString())
         val file = File.createTempFile(fileName, ".jpg", fileDirectory)
-        Log.i("TAG",file.toString())
         picturePath = file.absolutePath
-        Log.i("TAG",file.absolutePath.toString())
         return file
     }
 
     private fun openDetailActivity(hero: Hero) {
         val intent = Intent(this, DetailActivity::class.java)
         intent.putExtra(DetailActivity.SUPERHERO_KEY, hero)
-        intent.putExtra(DetailActivity.BITMAP_KEY, heroImage.drawable.toBitmap())
+        intent.putExtra(DetailActivity.BITMAP_KEY, picturePath)
         startActivity(intent)
     }
 }
